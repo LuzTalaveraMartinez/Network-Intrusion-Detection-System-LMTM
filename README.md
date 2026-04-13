@@ -7,7 +7,7 @@
 Este repositorio contiene la infraestructura de **Observabilidad de Seguridad** diseñada para centralizar y visualizar incidentes detectados por el sistema de defensa activa LMTM. Implementa un stack moderno de **Loki y Grafana** optimizado para entornos de recursos controlados.
 
 ## 📊 Monitoreo en Tiempo Real
-![Dashboard de Seguridad](./docs/dashboard_evidencia.png)
+![Dashboard de Seguridad](./docs/dashboard_evidencia.jpg)
 *Captura del panel de Grafana visualizando alertas de Snort mitigadas activamente.*
 
 ## 📂 Estructura del Proyecto

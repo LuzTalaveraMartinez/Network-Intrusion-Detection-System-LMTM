@@ -7,7 +7,7 @@
 Este repositorio es una solución integral de **Defensa Activa y Observabilidad**. Combina un motor de respuesta ante intrusiones (IPS) desarrollado en Python con un stack de monitoreo moderno (Grafana + Loki) para la visualización de incidentes en tiempo real.
 
 ## 📊 Monitoreo en Tiempo Real
-![Dashboard de Seguridad](./docs/dashboard_evidencia.png)
+![Dashboard de Seguridad](./docs/dashboard_evidencia.jpg)
 *Evidencia del SOC Panel visualizando bloqueos automáticos.*
 
 ## 📂 Estructura del Proyecto

@@ -12,3 +12,4 @@ positions.yaml
 # Datos del sistema
 .DS_Store
 __pycache__/
+*.deb

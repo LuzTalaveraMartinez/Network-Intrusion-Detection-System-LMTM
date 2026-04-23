@@ -1,0 +1,14 @@
+# Ejecutables
+loki
+promtail
+*.zip
+
+# Datos y Logs (Privacidad)
+logs/
+*.log
+/tmp/loki/
+positions.yaml
+
+# Datos del sistema
+.DS_Store
+__pycache__/

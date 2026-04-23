@@ -1,0 +1,50 @@
+2026-04-16T16:24:43.291584+00:00 localhost sudo: luztalavera : TTY=pts/1 ; PWD=/home/luztalavera ; USER=root ; COMMAND=/usr/bin/systemctl status grafana-server
+2026-04-16T16:24:43.354723+00:00 localhost sudo: pam_unix(sudo:session): session opened for user root(uid=0) by luztalavera(uid=1000)
+2026-04-16T16:25:01.959263+00:00 localhost CRON[3721]: pam_unix(cron:session): session opened for user root(uid=0) by root(uid=0)
+2026-04-16T16:25:02.014322+00:00 localhost CRON[3721]: pam_unix(cron:session): session closed for user root
+2026-04-16T16:29:37.727723+00:00 localhost sshd[4474]: Connection from 192.168.1.242 port 50780 on 192.168.1.165 port 22 rdomain ""
+2026-04-16T16:29:52.509206+00:00 localhost sshd[4474]: Accepted password for luztalavera from 192.168.1.242 port 50780 ssh2
+2026-04-16T16:29:52.544011+00:00 localhost sshd[4474]: pam_unix(sshd:session): session opened for user luztalavera(uid=1000) by luztalavera(uid=0)
+2026-04-16T16:29:52.709064+00:00 localhost systemd-logind[1029]: New session 9 of user luztalavera.
+2026-04-16T16:29:53.583241+00:00 localhost sshd[4474]: User child is on pid 4519
+2026-04-16T16:29:53.679857+00:00 localhost sshd[4519]: Starting session: shell on pts/3 for luztalavera from 192.168.1.242 port 50780 id 0
+2026-04-16T16:30:01.089820+00:00 localhost CRON[4532]: pam_unix(cron:session): session opened for user root(uid=0) by root(uid=0)
+2026-04-16T16:30:01.124077+00:00 localhost CRON[4532]: pam_unix(cron:session): session closed for user root
+2026-04-16T16:35:01.281599+00:00 localhost CRON[4555]: pam_unix(cron:session): session opened for user root(uid=0) by root(uid=0)
+2026-04-16T16:35:01.380492+00:00 localhost CRON[4555]: pam_unix(cron:session): session closed for user root
+2026-04-16T16:42:04.958262+00:00 localhost sudo: luztalavera : TTY=pts/3 ; PWD=/home/luztalavera/LMTM-SOC-Active-Monitoring/automation ; USER=root ; COMMAND=/usr/bin/rm promtail.log
+2026-04-16T16:42:05.095895+00:00 localhost sudo: pam_unix(sudo:session): session opened for user root(uid=0) by luztalavera(uid=1000)
+2026-04-16T16:42:05.102672+00:00 localhost sudo: pam_unix(sudo:session): session closed for user root
+2026-04-16T16:42:05.210527+00:00 localhost sudo: luztalavera : TTY=pts/3 ; PWD=/home/luztalavera/LMTM-SOC-Active-Monitoring/automation ; USER=root ; COMMAND=./promtail-linux-amd64 -config.file=../configs/promtail-config.yaml
+2026-04-16T16:42:05.234726+00:00 localhost sudo: pam_unix(sudo:session): session opened for user root(uid=0) by luztalavera(uid=1000)
+2026-04-16T16:44:17.805679+00:00 localhost dbus-daemon[995]: [system] Failed to activate service 'org.bluez': timed out (service_start_timeout=25000ms)
+2026-04-16T16:45:01.429456+00:00 localhost CRON[4611]: pam_unix(cron:session): session opened for user root(uid=0) by root(uid=0)
+2026-04-16T16:45:01.540001+00:00 localhost CRON[4611]: pam_unix(cron:session): session closed for user root
+2026-04-16T16:45:10.430699+00:00 localhost sudo: luztalavera : TTY=pts/3 ; PWD=/home/luztalavera/LMTM-SOC-Active-Monitoring/automation ; USER=root ; COMMAND=/usr/bin/cat /home/luztalavera/LMTM-SOC-Active-Monitoring/automation/promtail.log
+2026-04-16T16:45:10.459946+00:00 localhost sudo: pam_unix(sudo:session): session opened for user root(uid=0) by luztalavera(uid=1000)
+2026-04-16T16:45:10.558108+00:00 localhost sudo: pam_unix(sudo:session): session closed for user root
+2026-04-16T16:47:06.653750+00:00 localhost sudo: luztalavera : TTY=pts/3 ; PWD=/home/luztalavera/LMTM-SOC-Active-Monitoring/automation ; USER=root ; COMMAND=/usr/bin/pkill promtail
+2026-04-16T16:47:06.668789+00:00 localhost sudo: pam_unix(sudo:session): session opened for user root(uid=0) by luztalavera(uid=1000)
+2026-04-16T16:47:06.961681+00:00 localhost sudo: pam_unix(sudo:session): session closed for user root
+2026-04-16T16:47:07.057343+00:00 localhost sudo: luztalavera : TTY=pts/3 ; PWD=/home/luztalavera/LMTM-SOC-Active-Monitoring/automation ; USER=root ; COMMAND=./promtail-linux-amd64 -config.file=../configs/promtail-config.yaml
+2026-04-16T16:47:07.071465+00:00 localhost sudo: pam_unix(sudo:session): session opened for user root(uid=0) by luztalavera(uid=1000)
+2026-04-16T16:47:07.202483+00:00 localhost sudo: pam_unix(sudo:session): session closed for user root
+2026-04-16T16:48:58.934722+00:00 localhost sudo: luztalavera : TTY=pts/3 ; PWD=/home/luztalavera/LMTM-SOC-Active-Monitoring/automation ; USER=root ; COMMAND=/usr/bin/ls /root/carpeta_no_existe
+2026-04-16T16:48:58.948885+00:00 localhost sudo: pam_unix(sudo:session): session opened for user root(uid=0) by luztalavera(uid=1000)
+2026-04-16T16:48:58.998609+00:00 localhost sudo: pam_unix(sudo:session): session closed for user root
+2026-04-16T16:49:35.813281+00:00 localhost sudo: luztalavera : TTY=pts/3 ; PWD=/home/luztalavera/LMTM-SOC-Active-Monitoring/automation ; USER=root ; COMMAND=/usr/bin/cat /home/luztalavera/LMTM-SOC-Active-Monitoring/automation/promtail.log
+2026-04-16T16:49:35.827668+00:00 localhost sudo: pam_unix(sudo:session): session opened for user root(uid=0) by luztalavera(uid=1000)
+2026-04-16T16:49:35.874004+00:00 localhost sudo: pam_unix(sudo:session): session closed for user root
+2026-04-16T16:50:01.920532+00:00 localhost sudo: luztalavera : TTY=pts/3 ; PWD=/home/luztalavera/LMTM-SOC-Active-Monitoring/automation ; USER=root ; COMMAND=./promtail-linux-amd64 -config.file=../configs/promtail-config.yaml
+2026-04-16T16:50:01.935081+00:00 localhost sudo: pam_unix(sudo:session): session opened for user root(uid=0) by luztalavera(uid=1000)
+2026-04-16T16:50:02.293700+00:00 localhost sudo: pam_unix(sudo:session): session closed for user root
+2026-04-16T16:50:30.610120+00:00 localhost sudo: luztalavera : TTY=pts/3 ; PWD=/home/luztalavera/LMTM-SOC-Active-Monitoring/automation ; USER=root ; COMMAND=/usr/bin/pkill -9 promtail
+2026-04-16T16:50:30.615571+00:00 localhost sudo: pam_unix(sudo:session): session opened for user root(uid=0) by luztalavera(uid=1000)
+2026-04-16T16:50:30.741871+00:00 localhost sudo: pam_unix(sudo:session): session closed for user root
+2026-04-16T16:50:30.759123+00:00 localhost sudo: pam_unix(sudo:session): session closed for user root
+2026-04-16T16:50:40.026776+00:00 localhost sudo: luztalavera : TTY=pts/3 ; PWD=/home/luztalavera/LMTM-SOC-Active-Monitoring/automation ; USER=root ; COMMAND=./promtail-linux-amd64 -config.file=../configs/promtail-config.yaml
+2026-04-16T16:50:40.040310+00:00 localhost sudo: pam_unix(sudo:session): session opened for user root(uid=0) by luztalavera(uid=1000)
+2026-04-16T16:55:01.614946+00:00 localhost CRON[4696]: pam_unix(cron:session): session opened for user root(uid=0) by root(uid=0)
+2026-04-16T16:55:01.700728+00:00 localhost CRON[4696]: pam_unix(cron:session): session closed for user root
+2026-04-16T16:58:11.327979+00:00 localhost sudo: luztalavera : TTY=pts/3 ; PWD=/home/luztalavera/LMTM-SOC-Active-Monitoring/automation ; USER=root ; COMMAND=/usr/bin/tail -n 50 /var/log/auth.log
+2026-04-16T16:58:11.356044+00:00 localhost sudo: pam_unix(sudo:session): session opened for user root(uid=0) by luztalavera(uid=1000)

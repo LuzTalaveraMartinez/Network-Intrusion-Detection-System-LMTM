@@ -6,6 +6,9 @@
 
 ---
 
+![SOC Dashboard LMTM](img/dashboard_lmtm.png)
+
+
 ### 🌟 Visión General
 Este proyecto representa el despliegue completo de un **Centro de Operaciones de Seguridad (SOC)** escalable, diseñado para entornos de alta eficiencia. El sistema es capaz de capturar, analizar, almacenar y visualizar amenazas de red en tiempo real, integrando herramientas líderes en la industria de la ciberseguridad.
 

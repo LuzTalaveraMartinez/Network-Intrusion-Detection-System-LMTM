@@ -1,0 +1,43 @@
+=====================================================
+SISTEMA DE MONITOREO ACTIVO & IDS - RELEASE LMTM
+=====================================================
+
+AUTORA: Luz Maria Talavera Martinez
+FECHA: 23 de abril de 2026
+VERSION: 1.0 (Estable)
+HARDWARE: Optimizado para 8GB RAM
+
+-----------------------------------------------------
+1. ANALISIS DEL MODELO OSI (COBERTURA)
+-----------------------------------------------------
+* CAPA 2 (DATALINK): Captura de tramas via Dumpcap/enp0s8.
+* CAPA 3 (NETWORK): Deteccion de IP Spoofing y Bad Traffic.
+* CAPA 4 (TRANSPORT): Analisis de flags TCP y escaneo UDP.
+* CAPA 7 (APPLICATION): Inteligencia de logs en Grafana.
+
+-----------------------------------------------------
+2. ARQUITECTURA DEL SOC (PIPELINE)
+-----------------------------------------------------
+SNORT (IDS) -> PROMTAIL (AGENTE) -> LOKI (DB) -> GRAFANA
+* Snort: Procesa trafico y genera alertas en texto plano.
+* Promtail: Taguea y transporta logs via HTTP a Loki.
+* Loki: Indexacion de logs con baja latencia.
+* Grafana: Dashboard con alertas criticas y telemetria.
+
+-----------------------------------------------------
+3. METRICAS Y RESULTADOS
+-----------------------------------------------------
+* Capacidad de deteccion: >2500 alertas simultaneas.
+* Alertas monitoreadas: Port Scanning, Bad Traffic, Pings.
+* Analisis Forense: Integracion SSH-Wireshark operativa.
+
+-----------------------------------------------------
+4. NOTAS DE LA AUTORA (LMTM)
+-----------------------------------------------------
+Este proyecto demuestra la capacidad de despliegue de un
+entorno SOC profesional bajo condiciones de hardware
+restringido, utilizando automatizacion y versionado Git.
+
+=====================================================
+      Luz Maria Talavera Martinez - Trainee SOC
+=====================================================

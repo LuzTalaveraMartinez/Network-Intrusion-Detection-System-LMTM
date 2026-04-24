@@ -50,6 +50,6 @@ SISTEMA GUEST: Ubuntu Server (VirtualBox)
 
 ======================================================================
 ESTADO FINAL: SISTEMA 100% OPERATIVO - SNAPSHOT REALIZADA
-Luz Maria Talavera Martinez | Especialista en Ciberseguridad Trainee
+Luz Maria Talavera Martinez | SOC Analyst Trainee
 ======================================================================
 

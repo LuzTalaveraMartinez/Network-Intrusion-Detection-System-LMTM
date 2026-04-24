@@ -1,0 +1,55 @@
+======================================================================
+       BITÁCORA TÉCNICA DE INGENIERÍA: DESPLIEGUE SOC LMTM
+======================================================================
+AUTORA: Luz Maria Talavera Martinez
+FECHA: 23 de abril de 2026
+PROYECTO: Network Intrusion Detection System & SOC Observability
+SISTEMA HOST: Windows 11 Pro | RAM: 8GB
+SISTEMA GUEST: Ubuntu Server (VirtualBox)
+
+======================================================================
+
+1. FASE DE RED Y CAPTURA FORENSE (MODELO OSI CAPA 2/3)
+------------------------------------------------------
+- Configuración de interfaz en modo promiscuo (enp0s8).
+- Implementación de túnel SSH para telemetría de red.
+- Ejecución de Dumpcap en servidor remoto para análisis en tiempo real 
+  mediante Wireshark en estación de trabajo Windows.
+- Resultado: Visibilidad total del tráfico crudo para análisis forense.
+
+2. FASE DE DETECCIÓN DE INTRUSIONES (IDS - CAPA 3/4)
+------------------------------------------------------
+- Implementación de Snort IDS en modo detección (NIDS).
+- Personalización de reglas (local.rules) para identificación de:
+    * Port Scanning (Escaneo de puertos).
+    * ICMP Flooding (Pings masivos).
+    * Bad Traffic (Land Attack / IP Spoofing).
+- Resultado: Generación automatizada de alertas en logs de texto plano.
+
+3. FASE DE INGENIERÍA DE LOGS (PIPELINE LOKI-PROMTAIL)
+------------------------------------------------------
+- Despliegue de Grafana Loki como base de datos de logs indexada.
+- Configuración de Promtail como agente de transporte:
+    * Scraping del archivo /var/log/snort/alert.
+    * Etiquetado dinámico (Labels) para optimización de consultas.
+- Resultado: Streaming de logs con latencia inferior a 5 segundos.
+
+4. FASE DE VISUALIZACIÓN Y SOC (CAPA 7)
+------------------------------------------------------
+- Diseño de Dashboard profesional en Grafana Enterprise.
+- Implementación de paneles "Stat" con umbrales de color (Thresholds):
+    * Estado de Alerta Rojo: >1 alerta detectada.
+- Creación de visor de logs avanzado con filtrado por prioridad e IP.
+- Registro de éxito: Detección y visualización de +2,500 eventos en vivo.
+
+5. FASE DE AUTOMATIZACIÓN Y CI/CD
+------------------------------------------------------
+- Desarrollo de scripts en Bash para despliegue automático del stack.
+- Gestión de versionado en GitHub eliminando archivos sensibles (.deb, logs).
+- Documentación técnica completa en formato Markdown y Texto.
+
+======================================================================
+ESTADO FINAL: SISTEMA 100% OPERATIVO - SNAPSHOT REALIZADA
+Luz Maria Talavera Martinez | Especialista en Ciberseguridad Trainee
+======================================================================
+

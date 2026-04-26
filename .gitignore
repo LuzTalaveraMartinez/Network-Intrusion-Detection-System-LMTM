@@ -13,3 +13,34 @@ positions.yaml
 .DS_Store
 __pycache__/
 *.deb
+
+# Entorno virtual
+nids_env/
+
+# Binarios de automatización
+automation/loki-linux-amd64
+automation/promtail-linux-amd64
+
+# Logs del sistema (Rutas absolutas para evitar accidentes)
+/var/log/snort/
+/var/log/aide/
+/var/log/fail2ban.log
+
+# Bases de datos de AIDE (Huellas del sistema)
+*.db
+*.db.gz
+1~# Entorno virtual
+nids_env/
+
+# Binarios de automatización
+automation/loki-linux-amd64
+automation/promtail-linux-amd64
+
+# Logs del sistema (Rutas absolutas para evitar accidentes)
+/var/log/snort/
+/var/log/aide/
+/var/log/fail2ban.log
+
+# Bases de datos de AIDE (Huellas del sistema)
+*.db
+*.db.gz

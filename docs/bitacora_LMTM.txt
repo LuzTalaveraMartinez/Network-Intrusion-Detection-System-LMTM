@@ -1,0 +1,33 @@
+======================================================================
+BITÁCORA DE INGENIERÍA - PROYECTO SOC LMTM 2.0
+======================================================================
+Fecha de actualización: 02 de mayo de 2026
+Responsable: Luz Maria Talavera Martinez
+Estado del Proyecto: Estable / Hardening Index 82
+
+DETALLES DE LA ACTUALIZACIÓN:
+----------------------------------------------------------------------
+1. MIGRACIÓN A INFRAESTRUCTURA DOCKER:
+   - Se implementó el stack PLG (Promtail, Loki, Grafana) mediante
+     contenedores para garantizar portabilidad y aislamiento.
+   - Resolución de conflictos de puertos y permisos de red en Docker.
+
+2. AUTOMATIZACIÓN DE HIDS (AIDE):
+   - Inicialización de base de datos de integridad exitosa.
+   - Creación de script maestro 'check_aide.sh' para auditorías diarias.
+   - Configuración de pipeline para enviar alertas de integridad a Loki.
+
+3. HARDENING Y CUMPLIMIENTO (LYNIS):
+   - Elevación del Hardening Index de 75 a 82.
+   - Gestión de excepciones: Se aplicó Whitelisting/Skip-Test para el
+     modo promiscuo de la interfaz de red (NETW-3015) requerido por Snort.
+   - Implementación de banners legales en /etc/issue y /etc/issue.net.
+
+4. OPTIMIZACIÓN DEL DASHBOARD:
+   - Exportación del ADN visual en formato JSON (soc_v2.json).
+   - Inclusión de paneles de integridad de archivos y bloqueos IPS.
+
+OBSERVACIONES TÉCNICAS:
+- El sistema opera bajo el principio de privilegio mínimo.
+- Se verificó la ausencia de datos sensibles (IPs/Pass) antes del commit.
+======================================================================

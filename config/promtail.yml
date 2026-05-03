@@ -1,0 +1,39 @@
+server:
+  http_listen_port: 9080
+  grpc_listen_port: 0
+
+positions:
+  filename: /tmp/positions.yaml
+
+clients:
+  - url: http://localhost:3100/loki/api/v1/push
+
+scrape_configs:
+- job_name: security
+  static_configs:
+  - targets:
+      - localhost
+    labels:
+      job: snort
+      __path__: /var/log/snort/alert
+- job_name: aide
+  static_configs:
+  - targets:
+      - localhost
+    labels:
+      job: aide
+      __path__: /var/log/aide_daily.log
+- job_name: system
+  static_configs:
+  - targets:
+      - localhost
+    labels:
+      job: varlogs
+      __path__: /var/log/*.log
+- job_name: fail2ban
+  static_configs:
+  - targets:
+      - localhost
+    labels:
+      job: fail2ban
+      __path__: /var/log/fail2ban.log

@@ -1,0 +1,18 @@
+# Logs del sistema (Contienen IPs y nombres de host)
+*.log
+/var/log/*
+
+# Base de datos de AIDE (Contiene la firma de tu sistema específico)
+*.db
+*.db.gz
+/var/lib/aide/*
+
+# Archivos temporales y de sistema
+.DS_Store
+.bash_history
+.cache/
+/tmp/*
+
+# Archivos de configuración que podrían tener tokens (mejor prevenir)
+.env
+secrets.txt

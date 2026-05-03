@@ -6,6 +6,8 @@
 
 ---
 
+![SOC Dashboard LMTM](img/dashboard_soc_lmtm.png)
+
 ## 🌟 Visión General del Proyecto
 Este ecosistema representa la evolución de un IDS tradicional hacia un **Centro de Operaciones de Seguridad (SOC)** proactivo. Procesa la telemetría de seguridad en múltiples dimensiones para ofrecer visibilidad total sobre la superficie de ataque de un servidor Linux.
 

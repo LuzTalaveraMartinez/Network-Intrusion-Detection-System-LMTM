@@ -1,7 +1,7 @@
 # 🛡️ Advanced SOC Infrastructure & Active IDS Monitoring - LMTM 2.0
 
 ### 👤 Autor: **Luz Maria Talavera Martinez**
-**Fecha:** 2 de mayo de 2026 (Actualizado)  
+**Fecha:** 4 de mayo de 2026 (Actualización de Optimización)
 **Especialidad:** Ciberseguridad & Automatización de Infraestructuras
 
 ---
@@ -11,38 +11,49 @@
 ## 🌟 Visión General del Proyecto
 Este ecosistema representa la evolución de un IDS tradicional hacia un **Centro de Operaciones de Seguridad (SOC)** proactivo. Procesa la telemetría de seguridad en múltiples dimensiones para ofrecer visibilidad total sobre la superficie de ataque de un servidor Linux.
 
-El desarrollo ha sido optimizado mediante una metodología de **Co-Diseño Humano + IA**, logrando una arquitectura de datos resiliente capaz de operar en hardware optimizado (4GB/8GB RAM).
-
 ---
 
 ## 🛠️ Arquitectura del SOC (Defensa en Profundidad)
 
 ### 1. NIDS (Snort 2.9.x)
-*   **Capacidad:** Análisis de protocolos en tiempo real y detección de firmas maliciosas (DPI).
-*   **Modo Operativo:** Configurado en **Modo Promiscuo** para inspección total de red.
+*   **Capacidad:** Análisis de protocolos y detección de firmas maliciosas.
+*   **Modo Operativo:** Configurado en **Modo Promiscuo** para inspección total.
 
 ### 2. IPS (Fail2ban)
-*   **Capacidad:** Respuesta activa ante incidentes.
-*   **Acción:** Correlación de logs de autenticación para baneo automático de IPs sospechosas.
+*   **Capacidad:** Respuesta activa ante incidentes y baneo automático.
 
 ### 3. HIDS (AIDE)
-*   **Capacidad:** Auditoría de integridad de archivos (Host-based).
-*   **Automatización:** Implementación de **Cron Jobs** para reportes diarios de integridad en directorios críticos (/etc, /bin, /usr/bin).
+*   **Capacidad:** Auditoría de integridad de archivos.
+*   **Estado:** Base de datos inicializada y reportes centralizados en `/var/log/aide/`.
 
 ### 4. Hardening Audit (Lynis)
-*   **Métrica:** Sistema auditado y securizado con un **Hardening Index de 82/100**.
-*   **Cumplimiento:** Implementación de banners legales y gestión de excepciones técnicas documentadas.
+*   **Métrica:** Sistema auditado y securizado con un **Hardening Index de 83/100**.
+*   **Mejoras Recientes:** Restricción de compiladores (`gcc/make`), implementación de banners legales y parcheo de vulnerabilidades críticas.
 
 ---
 
 ## 🚀 Ingeniería de Automatización (The SOC Pipeline)
 
 *   **Pipeline de Telemetría (PLG Stack):**
-    *   **Promtail:** Agente de transporte de logs (Snort, AIDE, Fail2ban).
-    *   **Loki:** Almacén de logs de alta eficiencia indexado por etiquetas.
-    *   **Grafana:** Motor de visualización analítica y alertas.
+    *   **Promtail:** Transporte de logs optimizado con permisos de sistema.
+    *   **Loki:** Almacén de logs indexado.
+    *   **Grafana:** Motor de visualización analítica.
 
-*   **Scripts de Integridad (check_aide.sh):** Automatización que centraliza hallazgos de AIDE directamente en el pipeline de logs.
+---
+
+## ⚙️ Despliegue Robusto (Quick Start)
+
+1.  **Instalación y Permisos:**
+    `sudo ./deploy.sh`
+    *(Script optimizado con rutas absolutas y gestión de dependencias).*
+
+2.  **Inicialización HIDS:**
+    `sudo aideinit && sudo cp /var/lib/aide/aide.db.new /var/lib/aide/aide.db`
+    `sudo aide --check --config /etc/aide/aide.conf | sudo tee /var/log/aide/aide.log`
+
+3.  **Visualización (Docker V2):**
+    `cd config && sudo docker compose up -d`
+    Acceder a `http://localhost:3000` e importar `dashboards/soc_v2.json`.
 
 ---
 
@@ -50,33 +61,11 @@ El desarrollo ha sido optimizado mediante una metodología de **Co-Diseño Human
 ```text
 ├── config/           # Configuraciones YAML (Promtail, Docker, Lynis)
 ├── dashboards/       # ADN Visual (Modelos JSON de Grafana)
-├── docs/             # Reportes de auditoría y bitácoras técnicas
-├── scripts/          # Automatización (Instalación, AIDE, Inicio)
-└── deploy.sh         # Script maestro de despliegue rápido
+├── img/              # Capturas del entorno funcional
+├── deploy.sh         # Script maestro corregido (Rutas absolutas)
 ```
 
 ---
 
-## ⚙️ Despliegue en 3 Pasos (Docker-Ready)
-
-1.  **Instalación:**
-    `sudo ./deploy.sh`
-2.  **Inicialización HIDS:**
-    `sudo aide --init --config ./config/aide.conf`
-3.  **Visualización:**
-    Acceder a http://localhost:3000 e importar `dashboards/soc_v2.json`.
-
----
-
-## 🐳 Infraestructura SOC 2.0 (Docker Edition)
-
-### Gestión del Stack Visual
-```bash
-# Levantar Loki, Grafana y Promtail con un solo comando
-sudo docker-compose -f ./config/docker-compose.yml up -d
-```
-
----
-
-**"La seguridad no es un producto, es un proceso automatizado."**  
+**"La seguridad no es un producto, es un proceso automatizado."**
 **Desarrollado con precisión por Luz Maria Talavera Martinez** | *Defensa Proactiva.* 🛡️✨

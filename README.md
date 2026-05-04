@@ -23,12 +23,13 @@ Este ecosistema representa la evolución de un IDS tradicional hacia un **Centro
 *   **Capacidad:** Respuesta activa ante incidentes y baneo automático.
 
 ### 3. HIDS (AIDE)
-*   **Capacidad:** Auditoría de integridad de archivos.
-*   **Estado:** Base de datos inicializada y reportes centralizados en `/var/log/aide/`.
+*   **Capacidad:** Auditoría de integridad de archivos (Host-based).
+*   **Estado:** Base de datos inicializada y logs centralizados en `/var/log/aide/`.
 
-### 4. Hardening Audit (Lynis)
+### 4. Hardening Audit & Compliance (Lynis)
 *   **Métrica:** Sistema auditado y securizado con un **Hardening Index de 83/100**.
-*   **Mejoras Recientes:** Restricción de compiladores (`gcc/make`), implementación de banners legales y parcheo de vulnerabilidades críticas.
+*   **Vulnerability Management:** Suscripción **Ubuntu Pro** activa (ESM Apps & Infra) con soporte de seguridad hasta 2036.
+*   **Defensa Proactiva:** Kernel protegido con **Livepatch** (parcheo en vivo sin necesidad de reinicio).
 
 ---
 
@@ -36,8 +37,10 @@ Este ecosistema representa la evolución de un IDS tradicional hacia un **Centro
 
 *   **Pipeline de Telemetría (PLG Stack):**
     *   **Promtail:** Transporte de logs optimizado con permisos de sistema.
-    *   **Loki:** Almacén de logs indexado.
-    *   **Grafana:** Motor de visualización analítica.
+    *   **Loki:** Almacén de logs indexado por etiquetas.
+    *   **Grafana:** Motor de visualización analítica y alertas (Dashboard LMTM v2.0).
+
+*   **Optimización de Infraestructura:** Implementación de rutas absolutas en scripts de despliegue para garantizar portabilidad y resiliencia.
 
 ---
 
@@ -61,7 +64,8 @@ Este ecosistema representa la evolución de un IDS tradicional hacia un **Centro
 ```text
 ├── config/           # Configuraciones YAML (Promtail, Docker, Lynis)
 ├── dashboards/       # ADN Visual (Modelos JSON de Grafana)
-├── img/              # Capturas del entorno funcional
+├── docs/             # Bitácora técnica y reportes de auditoría
+├── img/              # Capturas del entorno funcional (Index 83)
 ├── deploy.sh         # Script maestro corregido (Rutas absolutas)
 ```
 

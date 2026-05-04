@@ -1,33 +1,48 @@
 ======================================================================
-BITÁCORA DE INGENIERÍA - PROYECTO SOC LMTM 2.0
+CENTRO DE OPERACIONES DE SEGURIDAD (SOC) - BITÁCORA TÉCNICA LMTM
 ======================================================================
-Fecha de actualización: 02 de mayo de 2026
-Responsable: Luz Maria Talavera Martinez
-Estado del Proyecto: Estable / Hardening Index 82
+Fecha: 04 de mayo de 2026
+Autor: Luz Maria Talavera Martinez
+Estado Final: Hardening Index 83/100 - Sistema de Defensa Proactiva OK
+======================================================================
 
-DETALLES DE LA ACTUALIZACIÓN:
+1. NIDS (SNORT 2.9.X) - DETECCIÓN DE RED
 ----------------------------------------------------------------------
-1. MIGRACIÓN A INFRAESTRUCTURA DOCKER:
-   - Se implementó el stack PLG (Promtail, Loki, Grafana) mediante
-     contenedores para garantizar portabilidad y aislamiento.
-   - Resolución de conflictos de puertos y permisos de red en Docker.
+- Configuración: Modo promiscuo en interfaz enp0s3.
+- Reglas: Implementación de reglas personalizadas (LMTM-Rules) para 
+  detección de tráfico ICMP y escaneos de puertos (Nmap).
+- Log: Alertas vinculadas a /var/log/snort/alert con permisos 644 para 
+  telemetría.
 
-2. AUTOMATIZACIÓN DE HIDS (AIDE):
-   - Inicialización de base de datos de integridad exitosa.
-   - Creación de script maestro 'check_aide.sh' para auditorías diarias.
-   - Configuración de pipeline para enviar alertas de integridad a Loki.
+2. IPS (FAIL2BAN) - RESPUESTA ACTIVA
+----------------------------------------------------------------------
+- Protección: Aseguramiento del servicio SSH mediante 'jail.local'.
+- Acción: Bloqueo automático (Ban) tras 3 intentos fallidos de login.
+- Integración: Exportación de eventos de baneo hacia Loki para 
+  visualización geográfica en el mapa de Grafana.
 
-3. HARDENING Y CUMPLIMIENTO (LYNIS):
-   - Elevación del Hardening Index de 75 a 82.
-   - Gestión de excepciones: Se aplicó Whitelisting/Skip-Test para el
-     modo promiscuo de la interfaz de red (NETW-3015) requerido por Snort.
-   - Implementación de banners legales en /etc/issue y /etc/issue.net.
+3. HIDS (AIDE) - INTEGRIDAD DE ARCHIVOS
+----------------------------------------------------------------------
+- Base de Datos: Inicializada mediante 'aideinit'.
+- Configuración: Auditoría focalizada en /etc, /bin y /usr/bin.
+- Flujo: Generación manual de reportes en /var/log/aide/aide.log para
+  monitoreo de cambios no autorizados en tiempo real.
 
-4. OPTIMIZACIÓN DEL DASHBOARD:
-   - Exportación del ADN visual en formato JSON (soc_v2.json).
-   - Inclusión de paneles de integridad de archivos y bloqueos IPS.
+4. HARDENING (LYNIS) - ENDURECIMIENTO DE SISTEMA
+----------------------------------------------------------------------
+- Resultado: Elevación de índice de 77 a 83/100.
+- Acciones:
+  - Configuración de banners de advertencia legales (/etc/issue).
+  - Restricción de permisos 700 para compiladores (gcc, make).
+  - Parcheo de vulnerabilidades críticas y actualización de Kernel.
 
-OBSERVACIONES TÉCNICAS:
-- El sistema opera bajo el principio de privilegio mínimo.
-- Se verificó la ausencia de datos sensibles (IPs/Pass) antes del commit.
+5. INFRAESTRUCTURA (DOCKER V2 + PLG STACK)
+----------------------------------------------------------------------
+- Orquestación: Docker Compose V2 con despliegue de Grafana, Loki y Promtail.
+- Automatización: Script 'deploy.sh' corregido con rutas absolutas para
+  garantizar portabilidad total del laboratorio.
+- Persistencia: Generación de Snapshot "SOC_LMTM_FINAL_83_OK".
+
+======================================================================
+"La seguridad es un proceso, no un producto." - LMTM
 ======================================================================

@@ -1,0 +1,3 @@
+Hardening Index Alcanzado: 83
+[1;31mFatal error: [1;37mNo profile defined and could not find default profile[0m
+Search paths used --> /usr/local/etc/lynis /etc/lynis /usr/local/lynis .

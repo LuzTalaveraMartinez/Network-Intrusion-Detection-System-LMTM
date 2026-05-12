@@ -6,30 +6,23 @@ positions:
   filename: /tmp/positions.yaml
 
 clients:
-  - url: http://localhost:3100/loki/api/v1/push
+  - url: http://loki:3100/loki/api/v1/push
 
 scrape_configs:
-- job_name: security
+- job_name: snort
   static_configs:
   - targets:
       - localhost
     labels:
       job: snort
-      __path__: /var/log/snort/alert
+      __path__: /var/log/snort/*alert*
 - job_name: aide
   static_configs:
   - targets:
       - localhost
     labels:
       job: aide
-      __path__: /var/log/aide_daily.log
-- job_name: system
-  static_configs:
-  - targets:
-      - localhost
-    labels:
-      job: varlogs
-      __path__: /var/log/*.log
+      __path__: /var/log/aide/aide.log
 - job_name: fail2ban
   static_configs:
   - targets:
@@ -37,3 +30,18 @@ scrape_configs:
     labels:
       job: fail2ban
       __path__: /var/log/fail2ban.log
+- job_name: system
+  static_configs:
+  - targets:
+      - localhost
+    labels:
+      job: varlogs
+      __path__: /var/log/*.log
+- job_name: zeek
+  static_configs:
+  - targets:
+      - localhost
+    labels:
+      job: zeek
+      __path__: /opt/zeek/logs/current/*.log
+

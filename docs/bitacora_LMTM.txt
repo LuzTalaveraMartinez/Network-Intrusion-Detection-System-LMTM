@@ -1,54 +1,54 @@
 ======================================================================
 CENTRO DE OPERACIONES DE SEGURIDAD (SOC) - BITÁCORA TÉCNICA LMTM
 ======================================================================
-Fecha: 04 de mayo de 2026
+Fecha última actualización: 11 de mayo de 2026
 Autor: Luz Maria Talavera Martinez
-Estado Final: Hardening Index 83/100 - Sistema de Defensa Proactiva OK
+Estado: Hardening Index 83/100 | NIDS Híbrido & Automatización OK
 ======================================================================
 
-1. NIDS (SNORT 2.9.X) - DETECCIÓN DE RED
+1. NIDS (SNORT 2.9.X) - DETECCIÓN POR FIRMAS
 ----------------------------------------------------------------------
-- Configuración: Modo promiscuo en interfaz enp0s3.
-- Reglas: Implementación de reglas personalizadas (LMTM-Rules) para 
-  detección de tráfico ICMP y escaneos de puertos (Nmap).
-- Log: Alertas vinculadas a /var/log/snort/alert con permisos 644 para 
-  telemetría constante hacia Grafana.
+- Configuración: Interfaz enp0s3 en modo promiscuo.
+- Reglas: Implementación de LMTM-Rules para tráfico ICMP y Nmap.
+- Integración: Telemetría vinculada a Loki con limpieza de códigos ANSI.
 
-2. IPS (FAIL2BAN) - RESPUESTA ACTIVA
+2. NIDS AVANZADO (ZEEK 6.0+) - ANÁLISIS DE PROTOCOLOS
 ----------------------------------------------------------------------
-- Protección: Aseguramiento del servicio SSH mediante 'jail.local'.
-- Acción: Bloqueo automático (Ban) tras 3 intentos fallidos de login.
-- Prueba de Estrés: Validado mediante acceso SSH remoto desde host 
-  externo (PowerShell) con baneo exitoso visualizado en Dashboard.
+- Despliegue: Network Security Monitoring (NSM) instalado en /opt/zeek.
+- Formato: Activación de salida JSON nativa vía política en local.zeek.
+- Visibilidad: Captura detallada de DNS (queries/answers), SSL/TLS 
+  y flujos de conexión TCP/UDP (conn.log) integrados al SOC.
 
-3. HIDS (AIDE) - INTEGRIDAD DE ARCHIVOS
+3. IPS (FAIL2BAN) & FIREWALL (UFW) - RESPUESTA ACTIVA
 ----------------------------------------------------------------------
-- Base de Datos: Inicializada mediante 'aideinit' para indexar el 100%
-  de los archivos del sistema.
-- Auditoría: Monitoreo focalizado en /etc, /bin y /usr/bin.
-- Telemetría: Generación de logs en /var/log/aide/aide.log integrados 
-  en el pipeline de Loki.
+- SSH Hardening: Bloqueo automático tras 3 intentos fallidos de login.
+- Network Filtering: Registro de paquetes bloqueados (IN=) mediante 
+  UFW con logging nivel medium hacia syslog.
 
-4. HARDENING (LYNIS) - ENDURECIMIENTO DE SISTEMA
+4. HIDS (AIDE) - INTEGRIDAD DE ARCHIVOS
 ----------------------------------------------------------------------
-- Resultado: Elevación de índice de 77 a 83/100.
-- Mejoras Clave:
-  - Implementación de banners legales de advertencia (/etc/issue).
-  - Restricción de permisos 700 para compiladores (gcc, make).
-  - Parcheo de vulnerabilidades críticas del repositorio Universe.
+- Control: Auditoría de cambios en binarios y archivos críticos.
+- Registro: Generación de logs históricos centralizados en Grafana.
 
-5. GESTIÓN DE VULNERABILIDADES (UBUNTU PRO & ESM)
+5. HARDENING & COMPLIANCE (LYNIS & UBUNTU PRO)
 ----------------------------------------------------------------------
-- Suscripción: Activación de licencia Personal (Soporte hasta 2036).
-- Servicios: ESM-Apps, ESM-Infra y Livepatch (parcheo de Kernel en vivo).
-- Mitigación: Eliminación de 11 alertas de seguridad críticas en 
-  paquetes de infraestructura y aplicaciones.
+- Hardening Index: Elevado de 77 a 83/100.
+- Soporte: ESM-Apps, ESM-Infra y Livepatch activos hasta 2036.
 
-6. INFRAESTRUCTURA (DOCKER V2 + PLG STACK)
+6. INGENIERÍA DE AUTOMATIZACIÓN (SOC STARTUP SCRIPT)
 ----------------------------------------------------------------------
-- Orquestación: Despliegue de Grafana, Loki y Promtail mediante Docker.
-- Portabilidad: Script 'deploy.sh' corregido con rutas absolutas.
-- Persistencia: Generación de Snapshot final "SOC_LMTM_FINAL_83_OK".
+- Desarrollo: Creación del script maestro 'start_soc.sh'.
+- Funcionalidad: Con un solo comando se ejecuta el despliegue de Zeek, 
+  el levantamiento del stack Docker (Loki/Grafana), la gestión 
+  automática de permisos de logs (chmod) y el reinicio de Promtail.
+- Beneficio: Garantiza la disponibilidad inmediata del SOC tras 
+  reinicios del sistema.
+
+7. VISUALIZACIÓN ANALÍTICA (GRAFANA DASHBOARD V2.0)
+----------------------------------------------------------------------
+- Stack: Orquestación PLG (Promtail, Loki, Grafana) mediante Docker.
+- Optimización: Dashboard SOC v2.0 con categorización visual de 
+  amenazas por prioridad (🔴 Crítico, 🟠 Medio, 🟡 Info).
 
 ======================================================================
 "La seguridad no es un producto, es un proceso automatizado." - LMTM

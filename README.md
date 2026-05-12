@@ -1,72 +1,73 @@
 # 🛡️ Advanced SOC Infrastructure & Active IDS Monitoring - LMTM 2.0
 
 ### 👤 Autor: **Luz Maria Talavera Martinez**
-**Fecha:** 4 de mayo de 2026 (Actualización de Optimización)
+**Fecha:** 11 de mayo de 2026 (Actualización: Integración NIDS Zeek & Automatización)
 **Especialidad:** Ciberseguridad & Automatización de Infraestructuras
 
 ---
 
-![SOC Dashboard LMTM](img/dashboard_soc_lmtm.png)
+![SOC Dashboard LMTM Final](img/soc_final_lmtm.png)
 
 ## 🌟 Visión General del Proyecto
-Este ecosistema representa la evolución de un IDS tradicional hacia un **Centro de Operaciones de Seguridad (SOC)** proactivo. Procesa la telemetría de seguridad en múltiples dimensiones para ofrecer visibilidad total sobre la superficie de ataque de un servidor Linux.
+Este ecosistema representa la evolución de un IDS tradicional hacia un **Centro de Operaciones de Seguridad (SOC)** proactivo. Procesa la telemetría de seguridad en múltiples dimensiones para ofrecer visibilidad total sobre la superficie de ataque de un servidor Linux, integrando ahora análisis profundo de protocolos.
 
 ---
 
 ## 🛠️ Arquitectura del SOC (Defensa en Profundidad)
 
-### 1. NIDS (Snort 2.9.x)
-*   **Capacidad:** Análisis de protocolos y detección de firmas maliciosas.
-*   **Modo Operativo:** Configurado en **Modo Promiscuo** para inspección total.
+### 1. NIDS Híbrido (Snort + Zeek)
+*   **Snort (2.9.x):** Detección de intrusiones basada en firmas y reglas en tiempo real.
+*   **Zeek (v6.0+):** Análisis de red profundo (Network Security Monitoring). Procesa protocolos (DNS, SSL/TLS, TCP) y genera telemetría estructurada en JSON para análisis forense.
 
 ### 2. IPS (Fail2ban)
-*   **Capacidad:** Respuesta activa ante incidentes y baneo automático.
+*   **Capacidad:** Respuesta activa ante incidentes, detección de fuerza bruta y baneo automático de IPs maliciosas.
 
 ### 3. HIDS (AIDE)
-*   **Capacidad:** Auditoría de integridad de archivos (Host-based).
-*   **Estado:** Base de datos inicializada y logs centralizados en `/var/log/aide/`.
+*   **Capacidad:** Auditoría de integridad de archivos. Detecta modificaciones no autorizadas en binarios y archivos de configuración críticos.
 
 ### 4. Hardening Audit & Compliance (Lynis)
-*   **Métrica:** Sistema auditado y securizado con un **Hardening Index de 83/100**.
-*   **Vulnerability Management:** Suscripción **Ubuntu Pro** activa (ESM Apps & Infra) con soporte de seguridad hasta 2036.
-*   **Defensa Proactiva:** Kernel protegido con **Livepatch** (parcheo en vivo sin necesidad de reinicio).
+*   **Métrica:** Sistema securizado con un **Hardening Index de 83/100**.
+*   **Defensa Proactiva:** Kernel protegido con **Livepatch** y suscripción **Ubuntu Pro** activa hasta 2036.
 
 ---
 
 ## 🚀 Ingeniería de Automatización (The SOC Pipeline)
 
 *   **Pipeline de Telemetría (PLG Stack):**
-    *   **Promtail:** Transporte de logs optimizado con permisos de sistema.
-    *   **Loki:** Almacén de logs indexado por etiquetas.
-    *   **Grafana:** Motor de visualización analítica y alertas (Dashboard LMTM v2.0).
+    *   **Promtail:** Agente de transporte que recolecta logs de Snort, Zeek, Fail2ban y UFW.
+    *   **Loki:** Almacén de logs indexado por etiquetas para consultas de alta velocidad.
+    *   **Grafana:** Panel de control centralizado con visualización analítica, iconos de prioridad y filtrado dinámico.
 
-*   **Optimización de Infraestructura:** Implementación de rutas absolutas en scripts de despliegue para garantizar portabilidad y resiliencia.
+*   **Ingestión de Datos:** Configuración de Zeek mediante `local.zeek` para salida JSON nativa, garantizando una integración fluida con el stack de visualización.
 
 ---
 
 ## ⚙️ Despliegue Robusto (Quick Start)
 
-1.  **Instalación y Permisos:**
+1.  **Instalación Inicial:**
     `sudo ./deploy.sh`
-    *(Script optimizado con rutas absolutas y gestión de dependencias).*
+    *(Instalación de Snort, Fail2ban y dependencias de red).*
 
-2.  **Inicialización HIDS:**
-    `sudo aideinit && sudo cp /var/lib/aide/aide.db.new /var/lib/aide/aide.db`
-    `sudo aide --check --config /etc/aide/aide.conf | sudo tee /var/log/aide/aide.log`
+2.  **⚡ Inicio Rápido Automatizado (Daily Start):**
+    Para levantar todo el ecosistema (Zeek, Docker, Permisos y Logs) de un solo paso:
+    ```bash
+    chmod +x start_soc.sh
+    ./start_soc.sh
+    ```
 
-3.  **Visualización (Docker V2):**
-    `cd config && sudo docker compose up -d`
+3.  **Visualización (Docker Stack):**
     Acceder a `http://localhost:3000` e importar `dashboards/soc_v2.json`.
 
 ---
 
 ## 📂 Estructura del Ecosistema
 ```text
-├── config/           # Configuraciones YAML (Promtail, Docker, Lynis)
-├── dashboards/       # ADN Visual (Modelos JSON de Grafana)
+├── config/           # Configuraciones YAML (Promtail, Docker, Loki)
+├── dashboards/       # ADN Visual (Modelo SOC v2.0 optimizado con Zeek)
 ├── docs/             # Bitácora técnica y reportes de auditoría
-├── img/              # Capturas del entorno funcional (Index 83)
-├── deploy.sh         # Script maestro corregido (Rutas absolutas)
+├── img/              # Capturas del entorno (soc_final_lmtm.png)
+├── deploy.sh         # Script maestro de despliegue inicial
+├── start_soc.sh      # Script de automatización de inicio diario
 ```
 
 ---

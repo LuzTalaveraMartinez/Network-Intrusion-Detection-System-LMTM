@@ -50,23 +50,26 @@ Estado Final: Hardening Index 83/100 - Sistema de Defensa Proactiva OK
 - Portabilidad: Script 'deploy.sh' corregido con rutas absolutas.
 - Persistencia: Generación de Snapshot final "SOC_LMTM_FINAL_83_OK".
 
-7. NIDS AVANZADO (ZEEK 6.X) & AUTOMATIZACIÓN FINAL
+
+======================================================================
+ACTUALIZACIÓN DE HITOS - 11 de Mayo de 2026 (INTEGRACIÓN ZEEK)
+======================================================================
+
+7. NIDS AVANZADO (ZEEK 6.0+) - ANÁLISIS DE PROTOCOLOS
 ----------------------------------------------------------------------
-- Análisis de Protocolos: Integración de Zeek para monitoreo profundo 
-  de tráfico DNS y SSL/TLS con salida estructurada en JSON.
-- Pipeline Unificado: Optimización de 'promtail-config.yaml' para 
-  centralizar telemetría de 5 fuentes simultáneas (SOC Pipeline).
-- Resolución de Red: Corrección de comunicación interna en Docker para 
-  garantizar persistencia de logs en el stack Loki/Grafana.
-- Visualización SOC v2.0: Dashboard actualizado con limpieza de 
-  metadatos ANSI y clasificación visual de amenazas por prioridad.
-- Script Maestro: Implementación de 'start_soc.sh' para la gestión 
-  automatizada de servicios, despliegue de Zeek y permisos de logs.
+- Despliegue: Instalación en /opt/zeek con monitoreo de interfaz enp0s3.
+- Formato: Activación de salida JSON nativa (@load policy/tuning/json-logs)
+  para visibilidad profunda en DNS, SSL y Conexiones TCP.
+- Integración: Vinculación de telemetría a través de Promtail hacia Loki.
 
-======================================================================
-ACTUALIZACIÓN: 11 de mayo de 2026 - Integración de Zeek & SOC Finalizada
-======================================================================
-
+8. AUTOMATIZACIÓN Y OPTIMIZACIÓN DEL SOC
+----------------------------------------------------------------------
+- Scripting: Creación de 'start_soc.sh' para arranque unificado de Zeek,
+  contenedores Docker y gestión automatizada de permisos de logs.
+- Visualización: Dashboard SOC v2.0 optimizado con limpieza de códigos
+  ANSI y categorización de alertas por color (Prioridad 1, 2 e Info).
+- Red Docker: Resolución de conflictos DNS internos para garantizar
+  la persistencia de la ingesta de datos.
 
 ======================================================================
 "La seguridad no es un producto, es un proceso automatizado." - LMTM

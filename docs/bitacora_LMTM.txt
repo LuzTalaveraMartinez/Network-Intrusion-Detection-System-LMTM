@@ -50,6 +50,24 @@ Estado Final: Hardening Index 83/100 - Sistema de Defensa Proactiva OK
 - Portabilidad: Script 'deploy.sh' corregido con rutas absolutas.
 - Persistencia: Generación de Snapshot final "SOC_LMTM_FINAL_83_OK".
 
+7. NIDS AVANZADO (ZEEK 6.X) & AUTOMATIZACIÓN FINAL
+----------------------------------------------------------------------
+- Análisis de Protocolos: Integración de Zeek para monitoreo profundo 
+  de tráfico DNS y SSL/TLS con salida estructurada en JSON.
+- Pipeline Unificado: Optimización de 'promtail-config.yaml' para 
+  centralizar telemetría de 5 fuentes simultáneas (SOC Pipeline).
+- Resolución de Red: Corrección de comunicación interna en Docker para 
+  garantizar persistencia de logs en el stack Loki/Grafana.
+- Visualización SOC v2.0: Dashboard actualizado con limpieza de 
+  metadatos ANSI y clasificación visual de amenazas por prioridad.
+- Script Maestro: Implementación de 'start_soc.sh' para la gestión 
+  automatizada de servicios, despliegue de Zeek y permisos de logs.
+
+======================================================================
+ACTUALIZACIÓN: 11 de mayo de 2026 - Integración de Zeek & SOC Finalizada
+======================================================================
+
+
 ======================================================================
 "La seguridad no es un producto, es un proceso automatizado." - LMTM
 ======================================================================

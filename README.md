@@ -1,7 +1,7 @@
 # 🛡️ Advanced SOC Infrastructure & Active IDS Monitoring - LMTM 2.0
 
 ### 👤 Autor: **Luz Maria Talavera Martinez**
-**Fecha:** 11 de mayo de 2026 (Actualización: Integración NIDS Zeek)
+**Fecha:** 11 de mayo de 2026 (Actualización: Integración NIDS Zeek & Automatización)
 **Especialidad:** Ciberseguridad & Automatización de Infraestructuras
 
 ---
@@ -44,16 +44,18 @@ Este ecosistema representa la evolución de un IDS tradicional hacia un **Centro
 
 ## ⚙️ Despliegue Robusto (Quick Start)
 
-1.  **Instalación de Componentes:**
+1.  **Instalación Inicial:**
     `sudo ./deploy.sh`
     *(Instalación de Snort, Fail2ban y dependencias de red).*
 
-2.  **Configuración de Zeek (NIDS):**
-    Asegurar que Zeek esté en `/opt/zeek` y ejecutar:
-    `sudo /opt/zeek/bin/zeekctl deploy`
+2.  **⚡ Inicio Rápido Automatizado (Daily Start):**
+    Para levantar todo el ecosistema (Zeek, Docker, Permisos y Logs) de un solo paso:
+    ```bash
+    chmod +x start_soc.sh
+    ./start_soc.sh
+    ```
 
 3.  **Visualización (Docker Stack):**
-    `cd config && sudo docker compose up -d`
     Acceder a `http://localhost:3000` e importar `dashboards/soc_v2.json`.
 
 ---
@@ -64,7 +66,8 @@ Este ecosistema representa la evolución de un IDS tradicional hacia un **Centro
 ├── dashboards/       # ADN Visual (Modelo SOC v2.0 optimizado con Zeek)
 ├── docs/             # Bitácora técnica y reportes de auditoría
 ├── img/              # Capturas del entorno (soc_final_lmtm.png)
-├── deploy.sh         # Script maestro de despliegue
+├── deploy.sh         # Script maestro de despliegue inicial
+├── start_soc.sh      # Script de automatización de inicio diario
 ```
 
 ---

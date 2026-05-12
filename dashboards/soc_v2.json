@@ -37,14 +37,14 @@
                   "hidden": false,
                   "query": {
                     "datasource": {
-                      "name": "dfja2g2enudq8f"
+                      "name": "ffls8epc1czk0b"
                     },
                     "group": "loki",
                     "kind": "DataQuery",
                     "spec": {
                       "direction": "backward",
                       "editorMode": "code",
-                      "expr": "{job=\"snort\"}",
+                      "expr": "{job=\"snort\"} | pattern \"<_> <timestamp> [<_>] <msg>\" | msg != \"\" | line_format \"  {{if contains \\\"Priority: 1\\\" .msg}}🔴{{else if contains \\\"Priority: 2\\\" .msg}}🟠{{else}}🟡{{end}} {{.timestamp}} | {{.msg}}\"\r\n\r\n",
                       "queryType": "range"
                     },
                     "version": "v0"
@@ -73,6 +73,70 @@
               "dedupStrategy": "none",
               "enableInfiniteScrolling": false,
               "enableLogDetails": true,
+              "prettifyLogMessage": false,
+              "showControls": false,
+              "showFieldSelector": false,
+              "showLevel": false,
+              "showTime": false,
+              "sortOrder": "Descending",
+              "timestampResolution": "ms",
+              "unwrappedColumns": false,
+              "wrapLogMessage": true
+            }
+          },
+          "version": "13.0.1"
+        }
+      }
+    },
+    "panel-10": {
+      "kind": "Panel",
+      "spec": {
+        "data": {
+          "kind": "QueryGroup",
+          "spec": {
+            "queries": [
+              {
+                "kind": "PanelQuery",
+                "spec": {
+                  "hidden": false,
+                  "query": {
+                    "datasource": {
+                      "name": "ffls8epc1czk0b"
+                    },
+                    "group": "loki",
+                    "kind": "DataQuery",
+                    "spec": {
+                      "direction": "backward",
+                      "editorMode": "code",
+                      "expr": "{job=\"zeek\", filename=\"/opt/zeek/logs/current/conn.log\"} | json | line_format \"{{.id_orig_h}} ➔ {{.id_resp_h}} {{if eq .service \\\"ssl\\\"}}🔵 SSL{{else if eq .service \\\"http\\\"}}🟢 HTTP{{else if eq .service \\\"dns\\\"}}🟡 DNS{{else}}⚪ {{.service}}{{end}} [{{.conn_state}}]\"\r\n",
+                      "queryType": "range"
+                    },
+                    "version": "v0"
+                  },
+                  "refId": "A"
+                }
+              }
+            ],
+            "queryOptions": {},
+            "transformations": []
+          }
+        },
+        "description": "",
+        "id": 10,
+        "links": [],
+        "title": "Zeek: Conexiones de Red",
+        "vizConfig": {
+          "group": "logs",
+          "kind": "VizConfig",
+          "spec": {
+            "fieldConfig": {
+              "defaults": {},
+              "overrides": []
+            },
+            "options": {
+              "dedupStrategy": "none",
+              "enableInfiniteScrolling": false,
+              "enableLogDetails": true,
               "prettifyLogMessage": true,
               "showControls": false,
               "showFieldSelector": false,
@@ -81,10 +145,10 @@
               "sortOrder": "Descending",
               "timestampResolution": "ms",
               "unwrappedColumns": false,
-              "wrapLogMessage": true
+              "wrapLogMessage": false
             }
           },
-          "version": "13.0.0"
+          "version": "13.0.1"
         }
       }
     },
@@ -101,14 +165,14 @@
                   "hidden": false,
                   "query": {
                     "datasource": {
-                      "name": "dfja2g2enudq8f"
+                      "name": "ffls8epc1czk0b"
                     },
                     "group": "loki",
                     "kind": "DataQuery",
                     "spec": {
                       "direction": "backward",
                       "editorMode": "code",
-                      "expr": "count_over_time({job=\"fail2ban\"}[$__range])",
+                      "expr": "count_over_time({job=\"fail2ban\"}|= \"Ban\" [24h])",
                       "queryType": "instant"
                     },
                     "version": "v0"
@@ -169,7 +233,7 @@
               "wideLayout": true
             }
           },
-          "version": "13.0.0"
+          "version": "13.0.1"
         }
       }
     },
@@ -186,7 +250,7 @@
                   "hidden": false,
                   "query": {
                     "datasource": {
-                      "name": "dfja2g2enudq8f"
+                      "name": "ffls8epc1czk0b"
                     },
                     "group": "loki",
                     "kind": "DataQuery",
@@ -233,7 +297,7 @@
               "wrapLogMessage": false
             }
           },
-          "version": "13.0.0"
+          "version": "13.0.1"
         }
       }
     },
@@ -250,14 +314,14 @@
                   "hidden": false,
                   "query": {
                     "datasource": {
-                      "name": "dfja2g2enudq8f"
+                      "name": "ffls8epc1czk0b"
                     },
                     "group": "loki",
                     "kind": "DataQuery",
                     "spec": {
                       "direction": "backward",
                       "editorMode": "code",
-                      "expr": "count_over_time({job=\"snort\"}[$__range])",
+                      "expr": "count_over_time({job=\"snort\"}[24h])",
                       "queryType": "range"
                     },
                     "version": "v0"
@@ -317,7 +381,7 @@
               "wideLayout": true
             }
           },
-          "version": "13.0.0"
+          "version": "13.0.1"
         }
       }
     },
@@ -334,14 +398,14 @@
                   "hidden": false,
                   "query": {
                     "datasource": {
-                      "name": "dfja2g2enudq8f"
+                      "name": "ffls8epc1czk0b"
                     },
                     "group": "loki",
                     "kind": "DataQuery",
                     "spec": {
                       "direction": "backward",
                       "editorMode": "code",
-                      "expr": "count_over_time({job=\"snort\"}[1m])",
+                      "expr": "sum by (job) (count_over_time({job=~\"snort|fail2ban|zeek\"}[5m]))",
                       "queryType": "range"
                     },
                     "version": "v0"
@@ -435,7 +499,7 @@
               }
             }
           },
-          "version": "13.0.0"
+          "version": "13.0.1"
         }
       }
     },
@@ -452,14 +516,14 @@
                   "hidden": false,
                   "query": {
                     "datasource": {
-                      "name": "dfja2g2enudq8f"
+                      "name": "ffls8epc1czk0b"
                     },
                     "group": "loki",
                     "kind": "DataQuery",
                     "spec": {
                       "direction": "backward",
                       "editorMode": "code",
-                      "expr": "{job=\"varlogs\"} |= \"IN=\"",
+                      "expr": "{job=\"varlogs\"} |= \"IN=\" | regexp \"SRC=(?P<origen>\\\\S+) DST=(?P<destino>\\\\S+) PROTO=(?P<protocolo>\\\\S+) DPT=(?P<puerto>\\\\S+)\"",
                       "queryType": "range"
                     },
                     "version": "v0"
@@ -499,7 +563,7 @@
               "wrapLogMessage": false
             }
           },
-          "version": "13.0.0"
+          "version": "13.0.1"
         }
       }
     },
@@ -516,7 +580,7 @@
                   "hidden": false,
                   "query": {
                     "datasource": {
-                      "name": "dfja2g2enudq8f"
+                      "name": "ffls8epc1czk0b"
                     },
                     "group": "loki",
                     "kind": "DataQuery",
@@ -532,7 +596,9 @@
                 }
               }
             ],
-            "queryOptions": {},
+            "queryOptions": {
+              "timeFrom": "30d"
+            },
             "transformations": []
           }
         },
@@ -563,7 +629,71 @@
               "wrapLogMessage": false
             }
           },
-          "version": "13.0.0"
+          "version": "13.0.1"
+        }
+      }
+    },
+    "panel-9": {
+      "kind": "Panel",
+      "spec": {
+        "data": {
+          "kind": "QueryGroup",
+          "spec": {
+            "queries": [
+              {
+                "kind": "PanelQuery",
+                "spec": {
+                  "hidden": false,
+                  "query": {
+                    "datasource": {
+                      "name": "ffls8epc1czk0b"
+                    },
+                    "group": "loki",
+                    "kind": "DataQuery",
+                    "spec": {
+                      "direction": "backward",
+                      "editorMode": "code",
+                      "expr": "{job=\"zeek\", filename=\"/opt/zeek/logs/current/dns.log\"} | json | line_format \"🔍 {{.query}} {{if eq .qtype_name \\\"A\\\"}}🔵 (IPv4){{else if eq .qtype_name \\\"AAAA\\\"}}🟣 (IPv6){{else if eq .qtype_name \\\"PTR\\\"}}🟡 (Inversa){{else}}⚪ {{.qtype_name}}{{end}} ➔ {{.answers}}\"\r\n",
+                      "queryType": "range"
+                    },
+                    "version": "v0"
+                  },
+                  "refId": "A"
+                }
+              }
+            ],
+            "queryOptions": {},
+            "transformations": []
+          }
+        },
+        "description": "",
+        "id": 9,
+        "links": [],
+        "title": "Zeek: Consultas DNS",
+        "vizConfig": {
+          "group": "logs",
+          "kind": "VizConfig",
+          "spec": {
+            "fieldConfig": {
+              "defaults": {},
+              "overrides": []
+            },
+            "options": {
+              "dedupStrategy": "none",
+              "enableInfiniteScrolling": false,
+              "enableLogDetails": true,
+              "prettifyLogMessage": true,
+              "showControls": false,
+              "showFieldSelector": false,
+              "showLevel": true,
+              "showTime": false,
+              "sortOrder": "Descending",
+              "timestampResolution": "ms",
+              "unwrappedColumns": false,
+              "wrapLogMessage": false
+            }
+          },
+          "version": "13.0.1"
         }
       }
     }
@@ -662,6 +792,32 @@
             "x": 18,
             "y": 12
           }
+        },
+        {
+          "kind": "GridLayoutItem",
+          "spec": {
+            "element": {
+              "kind": "ElementReference",
+              "name": "panel-9"
+            },
+            "height": 8,
+            "width": 12,
+            "x": 0,
+            "y": 29
+          }
+        },
+        {
+          "kind": "GridLayoutItem",
+          "spec": {
+            "element": {
+              "kind": "ElementReference",
+              "name": "panel-10"
+            },
+            "height": 8,
+            "width": 12,
+            "x": 12,
+            "y": 29
+          }
         }
       ]
     }
@@ -693,7 +849,7 @@
       "1d"
     ],
     "fiscalYearStartMonth": 0,
-    "from": "now-1h",
+    "from": "now-12h",
     "hideTimepicker": false,
     "timezone": "America/Argentina/Buenos_Aires",
     "to": "now"
